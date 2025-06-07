@@ -6,7 +6,14 @@
 <title>Super Developer Portfolio</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<!-- Add in <head> -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
 
+<!-- Add before </body> -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <style>
   /* Basic Reset & Body */
   body {
@@ -88,7 +95,7 @@
     box-shadow: 0 0 15px rgba(0,255,255,0.3);
   }
 
-  img {
+  .img12 {
     margin-top: 15px;
     border-radius: 8px;
     width: 100%;
@@ -147,7 +154,7 @@
     50.01%, 100% { opacity: 0; }
   }
 
-  img {
+  .img12 {
     max-width: 300px;
     border-radius: 12px;
     box-shadow: 0 0 20px #00e5ffaa;
@@ -317,10 +324,186 @@
 .icon[title="DB"] i {
   color: #4CAF50;
 }
+#starfield {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: black;
+}
+.footer {
+    background-color: #111;
+    padding: 30px 0;
+    text-align: center;
+  }
+
+  .footer-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+  }
+
+ .footer-icon {
+    font-size: 25px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: filter 0.3s ease;
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+    text-decoration: none;
+  }
+
+  /* Brand colors */
+  .footer-icon.email {
+    background-color: #D44638; /* Gmail Red */
+  }
+  .footer-icon.phone {
+    background-color: #4CAF50; /* Green */
+  }
+  .footer-icon.linkedin {
+    background-color: #0A66C2; /* LinkedIn Blue */
+  }
+  .footer-icon.facebook {
+    background-color: #1877F2; /* Facebook Blue */
+  }
+  .footer-icon.whatsapp {
+    background-color: #25D366; /* WhatsApp Green */
+  }
+
+  /* Hover brighten effect */
+  .footer-icon:hover {
+    filter: brightness(1.2);
+    box-shadow: 0 0 20px rgba(255,255,255,0.7);
+  }
+  /* --------- Responsive fixes --------- */
+
+/* Smaller padding on body for small screens */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  /* Navbar: stack links vertically & reduce gap */
+  nav {
+    display: flex;
+    gap: 18px;
+    padding: 10px 5px;
+  }
+
+  nav a {
+    font-size: 0.8rem;
+    opacity: 0.8;
+  }
+
+  /* Spacer height matching smaller nav */
+  .nav-spacer {
+    height: 48px;
+  }
+
+  /* Section titles smaller font */
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 25px;
+  }
+  h2 {
+    font-size: 1.5rem;
+    margin-top: 35px;
+  }
+
+  /* Cards: padding and margin reduced */
+  .project, .certification, .experience, .post, .feature,
+  .card {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+  }
+
+  /* Intro text smaller and center */
+  .intro-text {
+    font-size: 1.8rem;
+    white-space: normal;
+    min-width: auto;
+    height: auto;
+    margin: 25px 0 15px;
+  }
+
+  /* Icons container: center, wrap & smaller gap */
+  .icon-container {
+    gap: 15px;
+  }
+
+  /* Icons smaller size */
+  .icon {
+    font-size: 32px;
+    width: 80px;
+    height: 80px;
+    padding: 8px;
+  }
+
+  /* Footer: stack icons vertically with spacing */
+  /* .footer-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+*/
+  .footer-icon {
+    font-size: 22px;
+    width: 40px;
+    height: 40px;
+  } 
+}
+
+/* Medium devices (tablets) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .intro-text {
+    font-size: 2.2rem;
+  }
+
+  .icon {
+    font-size: 38px;
+    width: 95px;
+    height: 95px;
+  }
+
+  .footer-icon {
+    font-size: 28px;
+    width: 44px;
+    height: 44px;
+  }
+}
+/* For screen widths between 601px and 900px */
+@media (max-width: 601px) {
+  img {
+    max-width: 300px;  /* slightly smaller max width */
+    margin: 15px auto; /* reduce margin */
+  }
+}
+
+
+.swiper-slide {
+  width: 300px !important; /* fix slide width */
+  border-radius: 8px;
+  overflow: hidden;
+  background: black;
+}
+
+.swiper-slide img {
+  width: 100%;
+  display: block;
+  height: auto;
+}
+
 
 </style>
 </head>
 <body>
+<canvas id="starfield"></canvas>
 
 <nav id="navbar">
   <a href="#projects" class="nav-link"><i class="fas fa-code"></i>Projects</a>
@@ -335,11 +518,20 @@
 
 <div class="intro-container">
  <div class="intro-text">
-  I am a&nbsp;<span id="typed-text"></span><span class="cursor">|</span>
+  I am a&nbsp;<span id="typed-text" style="color: #00e5ff;"></span><span class="cursor">|</span>
 </div>
 
-  <img src="static/TamizhPro.jpg" alt="Your Image" />
+  <img class="img12" src="static/TamizhPro.jpg" alt="Your Image" />
+
+  <div class="card" style="width: 100%" >
+<h3>About Me</h3>
+    <p>
+    I am an aspiring <b>Software Developer</b> with a solid foundation in HTML, CSS, JavaScript, Python, Core & Advanced Java, Servlet, JSP, Django, SQL, and database systems. I'm also skilled in C and C++, and I’m passionate about building real-world solutions and continuously learning new technologies.
+  </p>
 </div>
+
+</div>
+<br>
 
 <br>
 <div class="intro-text">Skills</div>
@@ -368,47 +560,209 @@
 <section id="projects">
   <h2>Projects</h2>
   <div class="card">
-    <h3>Project Name</h3>
-    <p>Short project description goes here.</p>
+    <h3>Project Overview</h3>
+    <p>I’ve worked on various projects that showcase my skills in web and software development.
+Each project highlights my ability to solve problems creatively and effectively.
+From front-end interfaces to back-end logic, I strive for clean and functional solutions.
+Feel free to explore and see how I bring ideas to life.
+
+</p>
     <a href="https://example.com/project-link" class="simple-btn" target="_blank">Visit Project</a>
   </div>
+
+  <!-- Swiper slider added here -->
+  <div class="swiper mySwiper" style="margin-top: 40px; width: 90%; max-width: 700px; margin-left: auto; margin-right: auto;">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="text-align:center;">
+        <img src="static/bms.png" alt="Project 1" style="width:100%; height:auto; border-radius:8px;" />
+         </div>
+      <div class="swiper-slide" style="text-align:center;">
+        <img src="static/Crime.png" alt="Project 2" style="width:100%; height:auto; border-radius:8px;" />
+        </div>
+      <div class="swiper-slide" style="text-align:center;">
+        <img src="static/Mediconnect.png" alt="Project 3" style="width:100%; height:auto; border-radius:8px;" />
+        </div>
+      <div class="swiper-slide" style="text-align:center;">
+        <img src="static/Uniflow.png" alt="Project 4" style="width:100%; height:auto; border-radius:8px;" />
+        </div>
+    </div>
+
+    <!-- Navigation buttons -->
+    <div class="swiper-button-next" style="color:#ff416c;"></div>
+    <div class="swiper-button-prev" style="color:#ff416c;"></div>
+
+    <!-- Pagination bullets -->
+    <div class="swiper-pagination"></div>
+  </div>
 </section>
+
 
 <section id="certifications">
   <h2>Certifications</h2>
   <div class="card">
-    <strong>Certification Title</strong> from Issuer Name (2024-05-30)
+    <h3>Certifications Overview</h3>
+    <p>My certifications demonstrate the knowledge and expertise I’ve gained through learning.
+They reflect my dedication to growing as a developer and staying updated with technologies.
+Each certification adds to my skillset and boosts my confidence.
+Take a look to see the credentials I've earned so far.</p>
     <p><a href="https://example.com/certificate-link" class="simple-btn" target="_blank">View Certificate</a></p>
+  </div>
+ <!-- Swiper slider added here -->
+  <div class="swiper mySwiper" style="margin-top: 40px; width: 90%; max-width: 700px; margin-left: auto; margin-right: auto;">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="text-align:center;">
+        <img src="static/MPSD.jpg" alt="Project 1" style="width:100%; height:auto; border-radius:8px;" />
+         </div>
+      <div class="swiper-slide" style="text-align:center;">
+        <img src="static/HDCA.jpg" alt="Project 2" style="width:100%; height:auto; border-radius:8px;" />
+         </div>
+      <div class="swiper-slide" style="text-align:center;">
+        <img src="static/INTERNSHIP.jpg" alt="Project 3" style="width:100%; height:auto; border-radius:8px;" />
+         </div>
+      <div class="swiper-slide" style="text-align:center;">
+        <img src="static/WORK SHOP.jpg" alt="Project 4" style="width:100%; height:auto; border-radius:8px;" />
+         </div>
+    </div>
+
+    <!-- Navigation buttons -->
+    <div class="swiper-button-next" style="color:#ff416c;"></div>
+    <div class="swiper-button-prev" style="color:#ff416c;"></div>
+
+    <!-- Pagination bullets -->
+    <div class="swiper-pagination"></div>
   </div>
 </section>
 
 <section id="experience">
   <h2>Experience</h2>
   <div class="card">
-    <strong>Role</strong> at Company Name (2020-2023)
-    <p>Brief description of the experience.</p>
+    <h3>Experience Overview</h3>
+    <p>I have gathered valuable experience through internships and projects that challenged me.
+These roles helped me develop teamwork, problem-solving, and technical skills.
+Every experience contributes to my growth as a software developer.
+Explore my journey and the responsibilities I’ve taken on.
+
+</p>
     <a href="https://example.com/experience-link" class="simple-btn" target="_blank">See Details</a>
+  </div>
+ <!-- Swiper slider added here -->
+  <div class="swiper mySwiper" style="margin-top: 40px; width: 90%; max-width: 700px; margin-left: auto; margin-right: auto;">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="text-align:center;">
+        <img src="static/PAPER PRESENTATION.jpg" alt="Project 1" style="width:100%; height:auto; border-radius:8px;" />
+        </div>
+      <div class="swiper-slide" style="text-align:center;">
+        <img src="static/CYBER TECH.jpg" alt="Project 2" style="width:100%; height:auto; border-radius:8px;" />
+         </div>
+      <div class="swiper-slide" style="text-align:center;">
+        <img src="static/ARVRMR.jpg" alt="Project 3" style="width:100%; height:auto; border-radius:8px;" />
+        </div>
+      <div class="swiper-slide" style="text-align:center;">
+        <img src="static/MINI PROJECT.jpg" alt="Project 4" style="width:100%; height:auto; border-radius:8px;" />
+        </div>
+    </div>
+
+    <!-- Navigation buttons -->
+    <div class="swiper-button-next" style="color:#ff416c;"></div>
+    <div class="swiper-button-prev" style="color:#ff416c;"></div>
+
+    <!-- Pagination bullets -->
+    <div class="swiper-pagination"></div>
   </div>
 </section>
 
 <section id="posts">
   <h2>Posts</h2>
   <div class="card">
-    <h4>Post Title</h4>
-    <p>Summary or excerpt of the post content.</p>
+    <h3>Posts Overview</h3>
+    <p>I regularly share my insights, learning tips, and tech discoveries through blog posts.
+Writing helps me solidify my understanding and connect with others.
+My posts cover a variety of topics relevant to aspiring developers.
+Read them to learn more about my thoughts and passion for tech.</p>
     <a href="https://example.com/post-link" class="simple-btn" target="_blank">Read More</a>
+  </div>
+ <!-- Swiper slider added here -->
+  <div class="swiper mySwiper" style="margin-top: 40px; width: 90%; max-width: 700px; margin-left: auto; margin-right: auto;">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="text-align:center;">
+        <img src="static/logo.jpg" alt="Project 1" style="width:100%; height:auto; border-radius:8px;" />
+         </div>
+      <div class="swiper-slide" style="text-align:center;">
+        <img src="static/logo.jpg" alt="Project 2" style="width:100%; height:auto; border-radius:8px;" />
+       </div>
+      <div class="swiper-slide" style="text-align:center;">
+        <img src="static/logo.jpg" alt="Project 3" style="width:100%; height:auto; border-radius:8px;" />
+        </div>
+      <div class="swiper-slide" style="text-align:center;">
+        <img src="static/logo.jpg" alt="Project 4" style="width:100%; height:auto; border-radius:8px;" />
+         </div>
+    </div>
+
+    <!-- Navigation buttons -->
+    <div class="swiper-button-next" style="color:#ff416c;"></div>
+    <div class="swiper-button-prev" style="color:#ff416c;"></div>
+
+    <!-- Pagination bullets -->
+    <div class="swiper-pagination"></div>
   </div>
 </section>
 
 <section id="features">
   <h2>Features</h2>
   <div class="card">
-    <i class="fas fa-code"></i> <strong>Feature Title</strong>
-    <p>Short description of the feature.</p>
+    <h3>Features Overview</h3>
+    <p>This section highlights key features and functionalities I’ve developed or worked with.
+Each feature showcases practical solutions and improvements I’ve implemented.
+They reflect my focus on usability, performance, and clean design.
+Discover how these features add value and enhance user experience.</p>
     <a href="https://example.com/feature-link" class="simple-btn" target="_blank">Learn More</a>
   </div>
-</section>
+ <!-- Swiper slider added here -->
+  <div class="swiper mySwiper" style="margin-top: 40px; width: 90%; max-width: 700px; margin-left: auto; margin-right: auto;">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" style="text-align:center;">
+        <img src="static/logo.jpg" alt="Project 1" style="width:100%; height:auto; border-radius:8px;" />
+       </div>
+      <div class="swiper-slide" style="text-align:center;">
+        <img src="static/logo.jpg" alt="Project 2" style="width:100%; height:auto; border-radius:8px;" />
+         </div>
+      <div class="swiper-slide" style="text-align:center;">
+        <img src="static/logo.jpg" alt="Project 3" style="width:100%; height:auto; border-radius:8px;" />
+        </div>
+      <div class="swiper-slide" style="text-align:center;">
+        <img src="static/logo.jpg" alt="Project 4" style="width:100%; height:auto; border-radius:8px;" />
+         </div>
+    </div>
 
+    <!-- Navigation buttons -->
+    <div class="swiper-button-next" style="color:#ff416c;"></div>
+    <div class="swiper-button-prev" style="color:#ff416c;"></div>
+
+    <!-- Pagination bullets -->
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+<br><br>
+
+<footer class="footer">
+  <div class="footer-container">
+    <a href="mailto:your.email@example.com" class="footer-icon email" title="Email">
+      <i class="fas fa-envelope"></i>
+    </a>
+    <a href="tel:+1234567890" class="footer-icon phone" title="Mobile">
+      <i class="fas fa-phone"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/yourprofile" target="_blank" class="footer-icon linkedin" title="LinkedIn">
+      <i class="fab fa-linkedin-in"></i>
+    </a>
+    <a href="https://www.facebook.com/yourprofile" target="_blank" class="footer-icon facebook" title="Facebook">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a href="https://wa.me/1234567890" target="_blank" class="footer-icon whatsapp" title="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+</footer>
 <script>
   const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll(".nav-link");
@@ -486,6 +840,93 @@ function type() {
 }
 
 type();
+
+
+
+ const canvas = document.getElementById("starfield");
+  const ctx = canvas.getContext("2d");
+
+  let stars = [];
+  const numStars = 800; // Increased for denser stars
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+
+  window.addEventListener("resize", resizeCanvas);
+  resizeCanvas();
+
+  function createStar() {
+    return {
+      x: (Math.random() - 0.5) * 2000,
+      y: (Math.random() - 0.5) * 2000,
+      z: Math.random() * 1000 + 1
+    };
+  }
+
+  for (let i = 0; i < numStars; i++) {
+    stars.push(createStar());
+  }
+
+  function animateStars() {
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = 0; i < numStars; i++) {
+      const star = stars[i];
+      star.z -= 2; // speed
+
+      if (star.z <= 0) {
+        stars[i] = createStar();
+        continue;
+      }
+
+      const k = 500 / star.z;
+      const x = star.x * k + canvas.width / 2;
+      const y = star.y * k + canvas.height / 2;
+
+      if (x < 0 || x >= canvas.width || y < 0 || y >= canvas.height) continue;
+
+      const size = (1 - star.z / 1000) * 2;
+      const shade = 255 * (1 - star.z / 1000);
+      ctx.fillStyle = `rgb(${shade}, ${shade}, ${shade})`;
+      ctx.fillRect(x, y, size, size);
+    }
+
+    requestAnimationFrame(animateStars);
+  }
+
+  animateStars();
+
+
+  const swiper = new Swiper(".mySwiper", {
+  effect: "coverflow",
+  grabCursor: true,
+  centeredSlides: true,
+  slidesPerView: "auto",
+  spaceBetween: 30,
+  loop: true,
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+  },
+  coverflowEffect: {
+    rotate: 30,
+    stretch: 0,
+    depth: 100,
+    modifier: 1,
+    slideShadows: false,
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+});
 
 </script>
 

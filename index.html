@@ -498,7 +498,44 @@
   display: block;
   height: auto;
 }
+.btn-neon {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 20px;
+    background: #111; /* dark background */
+    color: #fff; /* white text */
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow:
+      0 0 4px #fff,
+      0 0 8px #fff,
+      0 0 12px #fff;
+    animation: neonWhitePulse 3s ease-in-out infinite alternate;
+    user-select: none;
+    transition: transform 0.1s ease;
+  }
 
+  @keyframes neonWhitePulse {
+    0% {
+      box-shadow:
+        0 0 2px #fff,
+        0 0 4px #fff,
+        0 0 6px #fff;
+    }
+    100% {
+      box-shadow:
+        0 0 8px #fff,
+        0 0 12px #fff,
+        0 0 16px #fff;
+    }
+  }
+
+  /* Press effect */
+  .btn-neon:active {
+    transform: translateY(2px);
+  }
 
 </style>
 </head>
@@ -528,6 +565,9 @@
     <p>
     I am an aspiring <b>Software Developer</b> with a solid foundation in HTML, CSS, JavaScript, Python, Core & Advanced Java, Servlet, JSP, Django, SQL, and database systems. I'm also skilled in C and C++, and I’m passionate about building real-world solutions and continuously learning new technologies.
   </p>
+     <a href="static/resume.pdf" download class="btn-neon">
+  Download Resume
+</a>
 </div>
 
 </div>
